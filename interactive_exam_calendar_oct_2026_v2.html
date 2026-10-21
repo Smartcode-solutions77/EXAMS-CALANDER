@@ -27,12 +27,8 @@ h1{font-size:24px;font-weight:600;margin:0 0 4px}
 .g10{background:#EEEDFE;color:#3C3489}
 .g11{background:#FAEEDA;color:#633806}
 .g12{background:#E1F5EE;color:#085041}
+.g6{background:#FAECE7;color:#712B13}
 .note{font-size:13px;color:var(--muted);margin:14px 0 0}
-@media (max-width:720px){
-.cal{grid-template-columns:1fr}
-.dh{display:none}
-.day{min-height:0}
-}
 </style>
 </head>
 <body>
@@ -41,7 +37,7 @@ h1{font-size:24px;font-weight:600;margin:0 0 4px}
 <p class="sub">October 2026. Choose a grade to see only its exams.</p>
 <div class="lg" id="filters"></div>
 <p id="count"></p>
-<div class="cal" id="cal"></div>
+<div style="overflow-x:auto"><div class="cal" id="cal" style="min-width:760px"></div></div>
 </main>
 <script>
 var exams=[
@@ -55,14 +51,17 @@ var exams=[
 {d:26,g:9,n:'English',t:'8:00–10:10 AM'},
 {d:26,g:12,n:'English',t:'10:30 AM–12:06 PM'},
 {d:27,g:7,n:'Science',t:'8:00–9:05 AM'},
+{d:27,g:11,n:'Physics',t:'10:30 AM–12:05 PM'},
+{d:28,g:11,n:'Economics',t:'10:30 AM–12:05 PM'},
+{d:29,g:6,n:'French',t:'8:00–9:05 AM'},
 {d:27,g:10,n:'Biology',t:'10:30 AM–12:35 PM'},
 {d:28,g:12,n:'Business',t:'10:30 AM–12:05 PM'}
 ];
 var days=[18,19,20,21,22,25,26,27,28,29];
 var weekday={18:'Sun',19:'Mon',20:'Tue',21:'Wed',22:'Thu',25:'Sun',26:'Mon',27:'Tue',28:'Wed',29:'Thu'};
-var colors={7:['#B5D4F4','#042C53','#185FA5'],9:['#F4C0D1','#4B1528','#993556'],10:['#CECBF6','#26215C','#534AB7'],11:['#FAC775','#412402','#854F0B'],12:['#9FE1CB','#04342C','#0F6E56'],all:['#444441','#F1EFE8','#2C2C2A']};
+var colors={6:['#F5C4B3','#4A1B0C','#993C1D'],7:['#B5D4F4','#042C53','#185FA5'],9:['#F4C0D1','#4B1528','#993556'],10:['#CECBF6','#26215C','#534AB7'],11:['#FAC775','#412402','#854F0B'],12:['#9FE1CB','#04342C','#0F6E56'],all:['#444441','#F1EFE8','#2C2C2A']};
 var sel='all';
-var grades=['all',7,9,10,11,12];
+var grades=['all',6,7,9,10,11,12];
 function esc(s){return s.replace(/&/g,'&amp;');}
 function render(){
 var f=document.getElementById('filters');
